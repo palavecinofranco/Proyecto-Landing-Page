@@ -247,8 +247,10 @@ h3{
     color: white;
 }
 
-.grid .item .bg-hover .customer{
-    color: var(--background-color);
+.grid .item .bg-hover .customer svg{
+    fill: white;
+    width: 150px;
+    margin-top: 10px;
 }
 /*ABOUT*/
 .about{
@@ -375,6 +377,10 @@ h3{
 
 .logo-redes i{
     font-size: 38px;
+}
+
+.nav-bar i{
+    font-size: 30px;
 }
 
 @keyframes opening-logo{
