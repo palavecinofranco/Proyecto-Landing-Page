@@ -1,11 +1,13 @@
 const workItems = document.querySelectorAll(".work .item");
 const workItemsCount = workItems.length;
-let currrentIndex = 0;
+let currentIndex = 0;
 const closeButton = document.querySelector("#close-button")
 const prevButton = document.querySelector("#prev-button")
 const nextButton = document.querySelector("#next-button")
 const openCloseButton = document.querySelector("#buttonOpenCloseMenu")
 const menuMobileItems= document.querySelector("#menu-mobile-items")
+
+console.log(currentIndex)
 
 openCloseButton.addEventListener("click", (e)=>{
     menuMobileItems.classList.toggle("menu-mobile-closed")
@@ -14,11 +16,11 @@ openCloseButton.addEventListener("click", (e)=>{
 workItems.forEach(item =>{
     item.addEventListener("click", e=>{
         e.preventDefault();
-        currrentIndex = parseInt(item.getAttribute("data-id"));
+        currentIndex = parseInt(item.getAttribute("data-id"));
         const contentArray = document.querySelectorAll("#details-container .item");
 
         document.querySelectorAll("#details-container .item").forEach(item =>{item.classList.add("item-hide")})
-        document.querySelectorAll("#details-container .item")[currrentIndex-1].classList.toggle("item-hide");
+        document.querySelectorAll("#details-container .item")[currentIndex].classList.toggle("item-hide");
         document.querySelector('#pantalla').style['animation-name'] = 'fade-in';
         document.querySelector("body").style["overflow"] = "hidden";
 
@@ -29,6 +31,8 @@ workItems.forEach(item =>{
         setTimeout(() => {
             document.querySelector("#pantalla").style = ""
         }, 2000);
+
+        console.log(currentIndex)
     })
 })
 
@@ -45,30 +49,29 @@ closeButton.addEventListener("click", e=>{
         }, 2000);
 })
 
-prevButton.addEventListener("click", e=>{
-    if(currrentIndex - 1<0){
+prevButton.addEventListener("click", ()=>{
+    if(currentIndex - 1<0){
         return;
     }
-
-    currrentIndex--;
-    loadGalleryItem(currrentIndex)
+    currentIndex--;
+    loadGalleryItem(currentIndex)
 })
 
-nextButton.addEventListener("click", e=>{
-    if(currrentIndex + 1 === workItemsCount){
+nextButton.addEventListener("click", ()=>{
+    if(currentIndex + 1 === workItemsCount){
         return;
     }
-
-    currrentIndex++;
-    loadGalleryItem(currrentIndex)
+    currentIndex++;
+    loadGalleryItem(currentIndex)
 })
+
 
 function loadGalleryItem(index){
     const items = document.querySelectorAll("#details-container .item")
+    console.log(items)
     items.forEach(item => {
         item.classList.add("item-hide")
-        items[index].classList.toggle("item-hide")
     })
+    items[index].classList.toggle("item-hide")
 }
-
 
